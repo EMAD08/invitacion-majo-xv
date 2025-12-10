@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mis XV Años - Majo</title>
+
+  <!-- Google Fonts: Parisienne & Josefin Slab -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400&family=Parisienne&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #d6336c;
+      --primary-dark: #49243e;
+      --bg-light: #fff0f6;
+      --text-dark: #333;
+      --text-muted: #6f2c4f;
+      --shadow: rgba(255, 105, 180, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Josefin Slab', serif;
+      background: linear-gradient(135deg, #fff9fc 0%, #fff0f6 100%);
+      color: var(--text-dark);
+      line-height: 1.8;
+    }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(214, 51, 108, 0.1);
+      padding: 0.8rem 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--bg-light);
+    }
+
+    /* ========== HEADER / HERO ========== */
+    header {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(214, 51, 108, 0.08) 0%, rgba(73, 36, 62, 0.05) 100%);
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-icon {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    /* ========== DATE DISPLAY SECTION ========== */
+    .date-section {
+      background-color: var(--bg-light);
+      padding: 26px 10px;
+      max-width: 400px;
+      margin: 0 auto 2rem auto;
+      border-radius: 13px;
+      box-shadow: 0 3px 12px var(--shadow);
+      text-align: center;
+    }
+
+    .date-display {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .date-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .date-day {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+
+    .date-number {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary-dark);
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .date-year {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 1.05rem;
+      font-weight: 400;
+    }
+
+    /* ========== COUNTDOWN TIMER ========== */
+    .countdown-section {
+      text-align: center;
+      padding: 0 10px;
+      margin-bottom: 2rem;
+    }
+
+    .countdown-label {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      margin-bottom: clamp(10px, 2vh, 18px);
+    }
+
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(15px, 4vw, 60px);
+      margin-bottom: clamp(8px, 2vh, 15px);
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      text-align: center;
+    }
+
+    .countdown-value {
+      font-family: 'Josefin Slab', serif;
+      font-size: clamp(2rem, 8vw, 4.2rem);
+      color: var(--primary-dark);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .countdown-label-small {
+      display: block;
+      font-family: 'Josefin Slab', serif;
+      font-size: clamp(0.85rem, 2.5vw, 1.7rem);
+      color: var(--primary);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-top: clamp(4px, 1vh, 10px);
+    }
+
+    /* ========== MAIN CONTAINER ========== */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-box {
+      background-color: var(--bg-light);
+      padding: 36px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.18);
+    }
+
+    .section-icon {
+      color: var(--primary);
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-family: 'Josefin Slab', serif;
+      color: var(--primary-dark);
+      font-size: 1.04rem;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* ========== INVITATION TEXT ========== */
+    .invitation-text {
+      background-color: white;
+      padding: 40px 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.15);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .invitation-text p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: var(--text-dark);
+      line-height: 1.9;
+    }
+
+    .invitation-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .invitation-highlight {
+      font-weight: 600;
+      color: var(--primary-dark);
+      display: block;
+      margin-top: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .invitation-section-title {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .quote-section {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(214, 51, 108, 0.2);
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: var(--primary-dark);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-reference {
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ========== LOCATION SECTION ========== */
+    .location-section {
+      background-color: var(--bg-light);
+      padding: 36px 20px;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.18);
+    }
+
+    .location-card {
+      margin-bottom: 1.5rem;
+    }
+
+    .location-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .location-time {
+      font-family: 'Parisienne', cursive;
+      color: var(--primary);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    .location-name {
+      color: var(--primary-dark);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .location-address {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ========== TIMELINE / ITINERARY ========== */
+    .itinerary-section {
+      font-family: 'Josefin Slab', serif;
+      background-color: var(--bg-light);
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    }
+
+    .itinerary-title {
+      font-family: 'Parisienne', cursive;
+      text-align: center;
+      color: var(--primary);
+      font-weight: 400;
+      font-size: 2.8rem;
+      margin-bottom: 32px;
+    }
+
+    .itinerary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .itinerary-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .itinerary-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .itinerary-icon {
+      color: var(--primary);
+      font-size: 1.8rem;
+      width: 40px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .itinerary-content p {
+      font-family: 'Josefin Slab', serif;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .itinerary-time {
+      color: var(--text-muted);
+    }
+
+    .itinerary-activity {
+      color: var(--text-dark);
+      font-size: 1rem;
+      margin: 2px 0 0 0;
+    }
+
+    /* ========== CAROUSEL GALLERY ========== */
+    .carousel-section {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .carousel-inner img {
+      height: 500px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(214, 51, 108, 0.8);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+      background-color: var(--primary);
+    }
+
+    .carousel-indicators {
+      bottom: -50px;
+    }
+
+    .carousel-indicators [data-bs-target] {
+      background-color: var(--primary);
+      opacity: 0.5;
+    }
+
+    .carousel-indicators .active {
+      background-color: var(--primary);
+      opacity: 1;
+    }
+
+    /* ========== CTA BUTTON ========== */
+    .cta-section {
+      background-color: var(--bg-light);
+      padding: 36px 20px;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.18);
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Josefin Slab', serif;
+      font-weight: 400;
+      font-size: 1.11rem;
+      background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      padding: 0.62em 1.4em 0.62em 1.15em;
+      margin-top: 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 2px 7px rgba(38, 195, 133, 0.11);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(38, 195, 133, 0.25);
+    }
+
+    .cta-icon {
+      font-size: 1.35rem;
+      color: #fff;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(214, 51, 108, 0.1);
+      margin-top: 3rem;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .nav-links a {
+        padding: 0.3rem 0.6rem;
+      }
+
+      header {
+        min-height: 60vh;
+        padding: 1.5rem 1rem;
+      }
+
+      .invitation-text {
+        padding: 25px 20px;
+      }
+
+      .itinerary-section {
+        padding: 30px 15px;
+      }
+
+      .carousel-inner img {
+        height: 350px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="#invitacion">Invitación</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#confirmar">Confirmar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header id="inicio" class="d-flex align-items-center justify-content-center position-relative overflow-hidden" style="background: linear-gradient(rgba(214, 51, 108, 0.3), rgba(73, 36, 62, 0.3)), url('/assets/pawel-czerwinski-2PN18U8CKi0-unsplash.jpg') center/cover no-repeat; min-height: 100vh;">
+    <div class="hero-content text-center position-relative z-3">
+      <i class="fa-solid fa-crown hero-icon"></i>
+      <h1 class="hero-title">¡Te invito a mis XV años!</h1>
+      <p class="hero-subtitle text-white">Un momento inolvidable que quiero compartir contigo</p>
+      <!-- Square Image in Center -->
+      <div class="mt-4" style="max-width: 500px; margin: 2rem auto;">
+        <img src="/assets/profile-final.png" alt="Majo" class="w-100 rounded-3" style="box-shadow: 0 10px 40px rgba(214, 51, 108, 0.3); aspect-ratio: 1/1; object-fit: cover;">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Date Display -->
+    <section>
+      <div class="date-section">
+        <div class="date-display">
+          <div class="date-col">
+            <span class="date-day">Domingo</span>
+          </div>
+          <div class="date-col">
+            <span class="date-number">28</span>
+          </div>
+          <div class="date-col">
+            <span class="date-year">Diciembre 2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="countdown-section">
+      <div class="countdown-label">Faltan</div>
+      <div id="countdown">
+        <div class="countdown-item">
+          <div id="days" class="countdown-value">0</div>
+          <span class="countdown-label-small">Días</span>
+        </div>
+        <div class="countdown-item">
+          <div id="hours" class="countdown-value">0</div>
+          <span class="countdown-label-small">Horas</span>
+        </div>
+        <div class="countdown-item">
+          <div id="minutes" class="countdown-value">0</div>
+          <span class="countdown-label-small">Minutos</span>
+        </div>
+        <div class="countdown-item">
+          <div id="seconds" class="countdown-value">0</div>
+          <span class="countdown-label-small">Segundos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invitation Text -->
+    <section id="invitacion">
+      <div class="invitation-text">
+        <p>Hay momentos inolvidables que se atesoran en el corazón para siempre. Por esta razón quiero que compartan conmigo este día tan especial en el que celebró mis XV años.</p>
+
+        <div class="invitation-section-title">Con la compañía de mis padres:</div>
+        <p><span class="invitation-highlight">Marco Antonio Ramos Ortiz</span></p>
+        <p><span class="invitation-highlight">Hayde del Carmen Martínez Ramírez</span></p>
+
+        <div class="invitation-section-title">Y de mis padrinos:</div>
+        <p><span class="invitation-highlight">Daniel Torales Díaz</span></p>
+        <p><span class="invitation-highlight">María Nayeli Vásquez Sánchez</span></p>
+
+        <p style="margin-top: 1.5rem;">Recibiremos la bendición de Dios en el acto de acción de gracias que se llevará a cabo a las <strong>5:30 PM</strong> en la ceremonia religiosa y posteriormente nos reuniremos en la recepción.</p>
+
+        <p>Será muy grato para mí contar con su presencia.</p>
+
+        <div class="quote-section">
+          <p class="quote-text">"Guárdame como la niña de tus ojos, escóndeme bajo la sombra de tus alas"</p>
+          <p class="quote-reference">Salmos 17:8</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations -->
+
+    <section id="ubicacion">
+      <div class="location-section text-center">
+        <div class="location-card">
+          <i class="fa-solid fa-church" style="color: var(--primary); font-size: 2.3rem; margin-bottom: 12px; display: block;"></i>
+          <div class="location-time">Ceremonia Religiosa</div>
+          <div class="location-name">La Casita Restaurante</div>
+          <div class="location-address">
+            Av. Morelos #305<br>
+            5:30 PM<br>
+            Oaxaca de Juárez
+          </div>
+        </div>
+
+        <div class="location-card">
+          <i class="fa-solid fa-champagne-glasses" style="color: var(--primary); font-size: 2.3rem; margin-bottom: 12px; display: block;"></i>
+          <div class="location-time">Recepción y Celebración</div>
+          <div class="location-name">Jardines Casa Azul</div>
+          <div class="location-address">
+            J. Mariano Esperanza #106<br>
+            Col. Centro<br>
+            Oaxaca de Juárez
+          </div>
+          <a href="https://maps.app.goo.gl/MvUiXVjZA8VsbSwKA" target="_blank" class="btn btn-sm btn-outline-primary mt-3" style="border-color: var(--primary); color: var(--primary);">
+            <i class="fa-solid fa-map-location-dot"></i> Ver en Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Mapa Jardín Casa Azul -->
+      <div class="mt-4">
+        <div class="location-time text-center fs-3">Ubicación</div>
+        <div class="ratio ratio-4x3">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4098.124567189872!2d-96.6760406!3d16.796006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c741001b9ca663%3A0xae9b75b7f055d218!2sJard%C3%ADn%20Casa%20Azul!5e1!3m2!1sen!2smx!4v1765386976362!5m2!1sen!2smx"
+                  style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="invitacion">
+      <div class="invitation-text">
+        <small>Lo más importante para mí es la presencia de ustedes, sin embargo si tienen a bien otorgarme un regalito, les agradecere de todo corazón sea por medio de un sobre. <i class="fa-solid fa-heart"></i></small>
+      </div>
+    </section>
+
+    <!-- Gallery Carousel -->
+    <section id="galeria">
+      <div class="carousel-section">
+        <div id="majoCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#majoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Majo Foto 1"></button>
+            <button type="button" data-bs-target="#majoCarousel" data-bs-slide-to="1" aria-label="Majo Foto 2"></button>
+            <button type="button" data-bs-target="#majoCarousel" data-bs-slide-to="2" aria-label="Majo Foto 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/assets/WhatsApp_Image_2025-12-08_at_7.42.10_AM.jpeg" alt="Majo Foto 1" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+              <img src="/assets/WhatsApp_Image_2025-12-08_at_7.42.10_AM_1_.jpeg" alt="Majo Foto 2" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+              <img src="/assets/WhatsApp_Image_2025-12-08_at_7.42.10_AM_2_.jpeg" alt="Majo Foto 3" class="d-block w-100">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#majoCarousel" data-bs-slide="prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#majoCarousel" data-bs-slide="next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="confirmar">
+      <div class="cta-section">
+        <i class="fa-solid fa-envelope section-icon"></i>
+        <h2 class="section-title">Confirma tu asistencia</h2>
+        <p class="section-subtitle">Te agradeceremos que confirmes tu asistencia, nos ayudará mucho con la organización. ¡Gracias!</p>
+        <a href="https://wa.me/+529511772055" target="_blank" class="cta-button">
+          <i class="fa-brands fa-whatsapp cta-icon"></i> 
+          Confirma aquí
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Con cariño, Majo · Mis XV Años</p>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Countdown Timer
+    function initCountdown() {
+      const countDownDate = new Date('2025-12-28T00:00:00').getTime();
+      const daysSpan = document.getElementById('days');
+      const hoursSpan = document.getElementById('hours');
+      const minutesSpan = document.getElementById('minutes');
+      const secondsSpan = document.getElementById('seconds');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        if (distance < 0) {
+          daysSpan.textContent = '0';
+          hoursSpan.textContent = '0';
+          minutesSpan.textContent = '0';
+          secondsSpan.textContent = '0';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysSpan.textContent = days;
+        hoursSpan.textContent = hours;
+        minutesSpan.textContent = minutes;
+        secondsSpan.textContent = seconds;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', initCountdown);
+  </script>
+</body>
+</html>
